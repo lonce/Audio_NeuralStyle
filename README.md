@@ -1,3 +1,43 @@
+
+
+Quick Run
+============================
+
+If you have all the required modules, you can just run Jupyter lab, and open the notebook:
+
+neural_style_audio.ipynb
+
+and run all cells.
+
+------
+
+There is also a [nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) docker with all the modules libs installed (minimum nvidia driver required for this container: 465.xx). To to build the docker, run 
+
+```bash
+docker image build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) --file Dockerfile --tag username:astyle ../
+```
+
+Then to run the docker:
+
+```bash
+docker run  --ipc=host --gpus "device=0" -it -v $(pwd):/astyle --rm username:astyle
+```
+
+In the container, run jupyter lab,  which will give you a port number [eg. 8888] and a token [eg. 18005551212] to use to access the notebook. Then (in a different terminal window)
+
+```
+docker ps -a #to find the name [eg. foo_bar] of the running container 
+docker inspect foo_bar    #to get the host IP of the docker container [eg. 172.17.0.2]
+```
+
+Now you can enter the URL in a browser to access the notebook
+
+http://hostname:portnum/?token=XXX where hostname is the IP address, portnum and XXXX info were provided when you ran jupyter lab.
+
+------
+
+
+
 An implementation of Neural Style Transfer for Audio using Pytorch.
 ============================
 
@@ -39,5 +79,4 @@ General implementation is based off the [Pytorch tutorial on Neural Transfer](ht
     * style_weight: for experiments 1e9 used for texture synthesis, 1e7 used for style transfer  
     * content_weight: usually left at 1, vary style_weight to change their relative strengths instead   
     * reg_weight: if boundopt=True, the regularizer to bound the optimization result to 0,1 is weighted by this number. Usually left at 1e-3 for experiments 
-
 
