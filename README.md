@@ -20,19 +20,11 @@ docker image build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) --
 Then to run the docker:
 
 ```bash
-docker run  --ipc=host --gpus "device=0" -it -v $(pwd):/astyle --rm username:astyle
+docker run  --ipc=host --gpus "device=0" -it -name astyle -p 5555:8888 -v $(pwd):/astyle --rm username:astyle
 ```
 
-In the container, run jupyter lab,  which will give you a port number [eg. 8888] and a token [eg. 18005551212] to use to access the notebook. Then (in a different terminal window)
+In the container, run jupyter lab,  which will give you token [eg. 18005551212] to use to access the notebook. Then (in a browser **not** running in the docker), you can just use localhost:5555, and then use token when prompted to access the notebook (assuming you ran you docker with the -p flag set to map the docker port to you local host port 5555).
 
-```
-docker ps -a #to find the name [eg. foo_bar] of the running container 
-docker inspect foo_bar    #to get the host IP of the docker container [eg. 172.17.0.2]
-```
-
-Now you can enter the URL in a browser to access the notebook
-
-http://hostname:portnum/?token=XXX where hostname is the IP address, portnum and XXXX info were provided when you ran jupyter lab.
 
 ------
 
