@@ -23,6 +23,12 @@ Then to run the docker:
 docker run  --ipc=host --gpus "device=0" -it -name astyle -p 5555:8888 -v $(pwd):/astyle --rm username:astyle
 ```
 
+Then 
+
+```
+docker attach astyle 
+```
+
 In the container, run jupyter lab,  which will give you token [eg. 18005551212] to use to access the notebook. Then (in a browser **not** running in the docker), you can just use localhost:5555, and then use token when prompted to access the notebook (assuming you ran you docker with the -p flag set to map the docker port to you local host port 5555).
 
 
