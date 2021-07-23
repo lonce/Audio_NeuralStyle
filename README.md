@@ -20,7 +20,7 @@ docker image build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) --
 Then to run the docker:
 
 ```bash
-docker run  --ipc=host --gpus "device=0" -it -name astyle -p 5555:8888 -v $(pwd):/astyle --rm username:astyle
+docker run  --ipc=host --gpus "device=0" -it --name astyle -p 5555:8888 -v $(pwd):/astyle --rm username:astyle
 ```
 
 Then 
