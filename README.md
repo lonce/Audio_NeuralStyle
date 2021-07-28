@@ -5,7 +5,10 @@ Quick Run
 
 If you have all the required modules, you can just run Jupyter lab, and open the notebook:
 
-neural_style_audio.ipynb
+-- neural_style_audio-tfresi.ipynb - Huz's style transfer modified to use TFRESI/PGHI.  
+-- neural_style_audio-tfresi.ipynb - reduces dimensions of Gram matrices with random projections.  
+-- neural_style_audio-tfresi.ipynb - interpolates between two Gram matrices to create target texture.  
+
 
 and run all cells.
 
